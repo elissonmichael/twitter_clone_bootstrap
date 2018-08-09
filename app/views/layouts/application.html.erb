@@ -9,6 +9,24 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if user_signed_in? %>
+      <%= render 'layouts/header_user_not_signed_in' %>
+    <% else %>
+      <%= render 'layouts/header_user_signed_in' %>
+    <% end %>
+
+    <div class="container main-container">
+      <% if notice %>
+        <div class="alert alert-success" role="alert">
+          <%= notice %>
+        </div>
+      <% elsif alert %>
+        <div class="alert alert-danger" role="alert">
+          <%= alert %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>
